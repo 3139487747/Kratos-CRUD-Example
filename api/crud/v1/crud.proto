@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package crud.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/go-kratos/kratos-layout/api/crud/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.crud.v1";
+option java_outer_classname = "CrudProtoV1";
+
+service Crud {
+  rpc Save (CreateRequest) returns (CreateReply){
+    option (google.api.http) = {
+      post: "/v1/save"
+      body: "*"
+    };
+  };
+  rpc Update (UpdateRequest) returns (UpdateReply){
+    option (google.api.http) = {
+      post: "/v1/update"
+      body: "*"
+    };
+  };
+  rpc Delete (DeleteRequest) returns (DeleteReply){
+    option (google.api.http) = {
+      post: "/v1/delete"
+      body: "*"
+    };
+  };
+  rpc ListAll (ListRequest) returns (ListReply){
+    option (google.api.http) = {
+      get: "/v1/list"
+    };
+  };
+
+  rpc FindByName (FindRequest) returns (FindReply){
+    option (google.api.http) = {
+      get: "/v1/find/{name}"
+    };
+  };
+
+
+}
+
+message CreateRequest {
+  string name = 1;
+  string pwd = 2;
+}
+message CreateReply {
+  string name = 1;
+  string pwd = 2;
+  int64 id = 3;
+}
+
+message UpdateRequest {
+  string name = 1;
+  string pwd = 2;
+  int64 id = 3;
+}
+message UpdateReply {
+  string name = 1;
+  string pwd = 2;
+  int64 id = 3;
+}
+
+message DeleteRequest {
+  int64 id = 3;
+}
+message DeleteReply {
+  string name = 1;
+  string pwd = 2;
+  int64 id = 3;
+}
+
+message ListRequest {}
+message ListReply {
+  repeated User users = 1;
+}
+
+message FindRequest {
+  string name = 1;
+}
+message FindReply {
+  string name = 1;
+  string pwd = 2;
+  int64 id = 3;
+}
+
+message User {
+  string name = 1;
+  string pwd = 2;
+  int64 id = 3;
+}

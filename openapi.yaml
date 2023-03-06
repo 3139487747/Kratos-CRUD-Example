@@ -1,0 +1,176 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: Crud API
+    version: 0.0.1
+paths:
+    /v1/delete:
+        post:
+            tags:
+                - Crud
+            operationId: Crud_Delete
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/crud.v1.DeleteRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/crud.v1.DeleteReply'
+    /v1/find/{name}:
+        get:
+            tags:
+                - Crud
+            operationId: Crud_FindByName
+            parameters:
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/crud.v1.FindReply'
+    /v1/list:
+        get:
+            tags:
+                - Crud
+            operationId: Crud_ListAll
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/crud.v1.ListReply'
+    /v1/save:
+        post:
+            tags:
+                - Crud
+            operationId: Crud_Save
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/crud.v1.CreateRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/crud.v1.CreateReply'
+    /v1/update:
+        post:
+            tags:
+                - Crud
+            operationId: Crud_Update
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/crud.v1.UpdateRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/crud.v1.UpdateReply'
+components:
+    schemas:
+        crud.v1.CreateReply:
+            type: object
+            properties:
+                name:
+                    type: string
+                pwd:
+                    type: string
+                id:
+                    type: integer
+                    format: int64
+        crud.v1.CreateRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                pwd:
+                    type: string
+        crud.v1.DeleteReply:
+            type: object
+            properties:
+                name:
+                    type: string
+                pwd:
+                    type: string
+                id:
+                    type: integer
+                    format: int64
+        crud.v1.DeleteRequest:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+        crud.v1.FindReply:
+            type: object
+            properties:
+                name:
+                    type: string
+                pwd:
+                    type: string
+                id:
+                    type: integer
+                    format: int64
+        crud.v1.ListReply:
+            type: object
+            properties:
+                users:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/crud.v1.User'
+        crud.v1.UpdateReply:
+            type: object
+            properties:
+                name:
+                    type: string
+                pwd:
+                    type: string
+                id:
+                    type: integer
+                    format: int64
+        crud.v1.UpdateRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                pwd:
+                    type: string
+                id:
+                    type: integer
+                    format: int64
+        crud.v1.User:
+            type: object
+            properties:
+                name:
+                    type: string
+                pwd:
+                    type: string
+                id:
+                    type: integer
+                    format: int64
+tags:
+    - name: Crud
